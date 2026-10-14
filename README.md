@@ -41,9 +41,9 @@ git push -u origin main
 4. Vercel akan otomatis membaca file `vercel.json` dan mendeteksi framework **Vite**:
    - **Framework Preset**: `Vite`
    - **Root Directory**: `./`
+   - **Install Command**: `npm install --legacy-peer-deps` (otomatis dikonfigurasi melalui `vercel.json` & `.npmrc`)
    - **Build Command**: `npm run build`
    - **Output Directory**: `dist`
-   - **Install Command**: `npm install`
 5. Klik tombol **"Deploy"**.
 6. Dalam hitungan detik (~1 menit), website Anda telah aktif dengan URL resmi (contoh: `https://tb-mega-bangunan.vercel.app`).
 
