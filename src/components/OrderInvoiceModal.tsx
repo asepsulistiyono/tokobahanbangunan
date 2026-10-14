@@ -60,25 +60,37 @@ export const OrderInvoiceModal: React.FC<OrderInvoiceModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 overflow-hidden bg-neutral-950/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-5"
+      className="fixed inset-0 z-50 overflow-y-auto bg-neutral-950/80 backdrop-blur-xs flex items-center justify-center p-2 sm:p-4 md:p-6"
       onClick={onClose}
     >
+      {/* Floating Close Button for Instant Exit regardless of screen width / resolution */}
+      <button
+        onClick={onClose}
+        type="button"
+        className="no-print fixed top-3 right-3 sm:top-5 sm:right-5 z-60 bg-neutral-900/90 hover:bg-red-600 text-white p-2.5 rounded-full shadow-2xl border border-neutral-700/80 hover:border-red-500 transition-all cursor-pointer flex items-center gap-1.5 px-3.5 backdrop-blur-md active:scale-95"
+        title="Tutup Pratinjau (Esc)"
+        aria-label="Tutup Pratinjau Faktur"
+      >
+        <X className="w-5 h-5 stroke-[2.5]" />
+        <span className="text-xs font-bold uppercase tracking-wider hidden xs:inline sm:inline">Tutup</span>
+      </button>
+
       <div
-        className={`relative bg-neutral-100 rounded-2xl w-full ${maxWidthClass} max-h-[88vh] flex flex-col border border-neutral-300 shadow-2xl overflow-hidden transition-all duration-200`}
+        className={`relative bg-neutral-100 rounded-2xl w-full ${maxWidthClass} max-h-[90vh] flex flex-col border border-neutral-300 shadow-2xl overflow-hidden transition-all duration-200 my-auto`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Control Bar (Hidden on physical print) */}
-        <div className="no-print bg-neutral-900 text-white px-4 sm:px-5 py-3 flex flex-wrap items-center justify-between gap-3 shrink-0 border-b border-neutral-800">
-          <div className="flex items-center gap-2 min-w-0">
+        <div className="no-print bg-neutral-900 text-white px-3 sm:px-5 py-2.5 sm:py-3 flex items-center justify-between gap-2 shrink-0 border-b border-neutral-800">
+          <div className="flex items-center gap-2 min-w-0 flex-1">
             <span className="text-xs sm:text-sm font-bold truncate">Pratinjau Nota Resmi</span>
-            <span className="text-[11px] text-amber-400 font-mono bg-neutral-800 px-2 py-0.5 rounded border border-neutral-700">
+            <span className="text-[11px] text-amber-400 font-mono bg-neutral-800 px-2 py-0.5 rounded border border-neutral-700 shrink-0">
               #{invoiceNumber}
             </span>
           </div>
 
-          <div className="flex items-center gap-2">
-            {/* View Size Selector */}
-            <div className="hidden sm:flex items-center bg-neutral-800 rounded-lg p-0.5 border border-neutral-700 text-[11px]">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            {/* View Size Selector - hidden on small/medium screens to prevent pushing buttons */}
+            <div className="hidden md:flex items-center bg-neutral-800 rounded-lg p-0.5 border border-neutral-700 text-[11px]">
               <span className="px-2 text-neutral-400 flex items-center gap-1 font-medium">
                 <SlidersHorizontal className="w-3 h-3" />
                 <span>Ukuran:</span>
@@ -124,19 +136,23 @@ export const OrderInvoiceModal: React.FC<OrderInvoiceModalProps> = ({
             {/* Print Button */}
             <button
               onClick={handlePrint}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-neutral-950 rounded-lg text-xs font-bold transition-colors cursor-pointer shadow-sm active:scale-95"
+              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-neutral-950 rounded-lg text-xs font-bold transition-colors cursor-pointer shadow-sm active:scale-95 shrink-0"
+              title="Cetak Faktur atau Simpan ke PDF"
             >
               <Printer className="w-3.5 h-3.5" />
-              <span>Cetak / PDF</span>
+              <span className="hidden xs:inline sm:inline">Cetak / PDF</span>
+              <span className="xs:hidden sm:hidden">Cetak</span>
             </button>
 
-            {/* Close Button */}
+            {/* Close Button - prominent, red/neutral contrast, never obscured */}
             <button
               onClick={onClose}
-              className="p-1.5 text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-lg transition-colors cursor-pointer"
-              title="Tutup (Esc)"
+              className="flex items-center gap-1 px-2.5 py-1.5 bg-neutral-800 hover:bg-red-600 text-neutral-200 hover:text-white rounded-lg border border-neutral-700 hover:border-red-500 transition-all cursor-pointer shrink-0 font-medium text-xs shadow-xs"
+              title="Tutup Pratinjau (Esc)"
+              aria-label="Tutup jendela pratinjau nota"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4 stroke-[2.5]" />
+              <span className="text-xs font-bold">Tutup</span>
             </button>
           </div>
         </div>
