@@ -1,0 +1,6 @@
+{
+  "name": "TB Mega Bangunan Sentosa",
+  "description": "Toko Bahan Bangunan Terlengkap & Grosir Material Konstruksi Berkualitas SNI dengan Pengiriman Cepat dan Kalkulator Material.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
